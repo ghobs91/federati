@@ -7,7 +7,7 @@ import { isKaiOS } from '../_utils/userAgent/isKaiOS.js'
 
 const persistedState = {
   alwaysShowFocusRing: false,
-  autoplayGifs: false,
+  autoplayGifs: true,
   composeData: {},
   currentInstance: null,
   currentRegisteredInstanceName: undefined,
@@ -15,7 +15,7 @@ const persistedState = {
   // we disable scrollbars by default on iOS
   disableCustomScrollbars: process.browser && /iP(?:hone|ad|od)/.test(navigator.userAgent),
   bottomNav: false,
-  centerNav: false,
+  centerNav: true,
   disableFavCounts: false,
   disableFollowerCounts: false,
   disableHotkeys: false,

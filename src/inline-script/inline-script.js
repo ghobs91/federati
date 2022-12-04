@@ -60,10 +60,10 @@ if (bottomNav) {
     .setAttribute('media', 'all') // enables the style
 }
 
-if (centerNav) {
+// if (centerNav) {
   document.getElementById('theCenterNavStyle')
     .setAttribute('media', 'all') // enables the style
-}
+// }
 
 // hack to make the scrollbars rounded only on macOS
 if (isMac()) {

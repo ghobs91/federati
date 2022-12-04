@@ -195,7 +195,7 @@ export default {
   overLimit: '{count} {count, plural, =1 {character} other {characters}} over limit',
   underLimit: '{count} {count, plural, =1 {character} other {characters}} remaining',
   composeStatus: 'Compose toot',
-  postStatus: 'Toot!',
+  postStatus: 'Post',
   contentWarning: 'Content warning',
   dropToUpload: 'Drop to upload',
   invalidFileType: 'Invalid file type',
