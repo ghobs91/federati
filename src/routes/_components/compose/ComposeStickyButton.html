@@ -18,15 +18,6 @@
     justify-content: flex-end;
   }
 
-  .compose-box-button-sticky {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 92%;
-  }
-
-  :global(.compose-box-button-sticky, .compose-box-button-fixed) {
-    z-index: 5000;
-  }
 </style>
 <script>
   import ComposeButton from './ComposeButton.html'
@@ -50,7 +41,6 @@
       timelineInitialized: ({ $timelineInitialized }) => $timelineInitialized,
       computedClass: ({ showSticky, hideAndFadeIn }) => (classname(
         'compose-box-button-wrapper',
-        showSticky && 'compose-box-button-sticky',
         hideAndFadeIn
       ))
     },

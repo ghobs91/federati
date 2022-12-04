@@ -1,5 +1,5 @@
 {#if $isUserLoggedIn}
-<h1 class="sr-only">{intl.community}</h1>
+<h1 class="sr-only">Instance</h1>
 <div class="community-page">
   <FocusRestoration realm="community">
     <RadioGroup
@@ -8,10 +8,10 @@
       label="{intl.pinnableTimelines}">
 
       <h2 class="community-header">
-        {intl.timelines}
+        Pinnable Timelines
       </h2>
 
-      <PageList label="{intl.timelines}">
+      <PageList label="Pinnable Timelines">
         {#each staticPinnables as staticPinnable, i}
           <PageListItem href={staticPinnable.href}
                         label={staticPinnable.label}

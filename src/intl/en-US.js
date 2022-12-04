@@ -83,7 +83,7 @@ export default {
   federatedTimeline: 'Federated timeline',
   localTimeline: 'Local timeline',
   // community page
-  community: 'Community',
+  community: 'Instance',
   pinnableTimelines: 'Pinnable timelines',
   timelines: 'Timelines',
   lists: 'Lists',

@@ -1,5 +1,11 @@
 const themes = [
   {
+    name: 'mastodon',
+    label: 'intl.themeMastodon',
+    dark: true,
+    color: '#282C37'
+  },
+  {
     name: 'default',
     label: 'intl.themeRoyal',
     dark: false,
@@ -82,12 +88,6 @@ const themes = [
     label: 'intl.themeHacker',
     dark: true,
     color: '#4ab92f'
-  },
-  {
-    name: 'mastodon',
-    label: 'intl.themeMastodon',
-    dark: true,
-    color: '#282C37'
   },
   {
     name: 'pitchblack',
