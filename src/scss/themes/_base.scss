@@ -26,30 +26,28 @@
   --form-border: #{darken($border-color, 10%)};
 
   --nav-bg: #{$main-theme-color};
-  --nav-active-bg: #{lighten($main-theme-color, 9%)};
+  --nav-active-bg: #{lighten($main-theme-color, 3%)};
   --nav-border: #{darken($main-theme-color, 10%)};
-  --nav-a-border: #{$main-theme-color};
-  --nav-a-selected-border: #{$secondary-text-color};
-  --nav-a-selected-bg: #{lighten($main-theme-color, 10%)};
-  --nav-a-selected-active-bg: #{lighten($main-theme-color, 17%)};
+  --nav-a-selected-bg: #{lighten($main-theme-color, 3%)};
+  --nav-a-selected-active-bg: var(--nav-a-selected-bg-hover);
   --nav-svg-fill: #{$secondary-text-color};
   --nav-text-color: #{$secondary-text-color};
-  --nav-indicator-bg: #{rgba($secondary-text-color, 0.8)};
-  --nav-indicator-bg-hover: #{rgba($secondary-text-color, 0.85)};
+  --nav-indicator-bg: #{$main-theme-color};
+  --nav-indicator-bg-active: #{mix($secondary-text-color, $main-theme-color, 90%)};
+  --nav-indicator-bg-hover: #{mix($secondary-text-color, $main-theme-color, 60%)};
 
   --nav-a-selected-border-hover: #{$secondary-text-color};
-  --nav-a-selected-bg-hover: #{lighten($main-theme-color, 15%)};
-  --nav-a-bg-hover: #{lighten($main-theme-color, 5%)};
-  --nav-a-border-hover: #{$main-theme-color};
+  --nav-a-selected-bg-hover: #{lighten($main-theme-color, 4.5%)};
+  --nav-a-bg-hover: #{lighten($main-theme-color, 1.5%)};
   --nav-svg-fill-hover: #{$secondary-text-color};
   --nav-text-color-hover: #{$secondary-text-color};
 
-  --action-button-fill-color: #{lighten($main-theme-color, 18%)};
-  --action-button-fill-color-hover: #{lighten($main-theme-color, 22%)};
-  --action-button-fill-color-active: #{lighten($main-theme-color, 5%)};
-  --action-button-fill-color-pressed: #{darken($main-theme-color, 7%)};
-  --action-button-fill-color-pressed-hover: #{darken($main-theme-color, 2%)};
-  --action-button-fill-color-pressed-active: #{darken($main-theme-color, 15%)};
+  --action-button-fill-color: #{lighten($main-theme-color, 11.5%)};
+  --action-button-fill-color-hover: #{lighten($main-theme-color, 6%)};
+  --action-button-fill-color-active: #{$main-theme-color};
+  --action-button-fill-color-pressed: #{darken(saturate($main-theme-color, 5%), 6%)};
+  --action-button-fill-color-pressed-hover: #{darken(saturate($main-theme-color, 5%), 12%)};
+  --action-button-fill-color-pressed-active: #{darken(saturate($main-theme-color, 5%), 15%)};
 
   --action-button-deemphasized-fill-color: #{$deemphasized-color};
   --action-button-deemphasized-fill-color-hover: #{lighten($deemphasized-color, 22%)};
@@ -83,8 +81,8 @@
   --deemphasized-text-color: #{$deemphasized-color};
   --focus-outline: #{$focus-outline};
 
-  --very-deemphasized-link-color: #{rgba($anchor-color, 0.6)};
-  --very-deemphasized-text-color: #{rgba(#666, 0.6)};
+  --very-deemphasized-text-color: #757575;
+  --very-deemphasized-link-color: var(--very-deemphasized-text-color);
 
   --status-direct-background: #{darken($body-bg-color, 5%)};
   --main-theme-color: #{$main-theme-color};

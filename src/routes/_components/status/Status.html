@@ -39,7 +39,9 @@
   {#if isStatusInOwnThread}
     <StatusDetails {...params} {...timestampParams} />
   {/if}
-  <StatusToolbar {...params} {replyShown} on:recalculateHeight />
+  {#if !isStatusInNotification}
+    <StatusToolbar {...params} {replyShown} on:recalculateHeight on:focusArticle="focusArticle()" />
+  {/if}
   {#if replyShown}
     <StatusComposeBox {...params} on:recalculateHeight />
   {/if}
@@ -133,6 +135,7 @@
   import { composeNewStatusMentioning } from '../../_actions/mention.js'
   import { createStatusOrNotificationUuid } from '../../_utils/createStatusOrNotificationUuid.js'
   import { addEmojiTooltips } from '../../_utils/addEmojiTooltips.js'
+  import { tryToFocusElement } from '../../_utils/tryToFocusElement.js'
 
   const INPUT_TAGS = new Set(['a', 'button', 'input', 'textarea', 'label'])
   const isUserInputElement = node => INPUT_TAGS.has(node.localName)
@@ -213,6 +216,10 @@
       async mentionAuthor () {
         const { accountForShortcut } = this.get()
         await composeNewStatusMentioning(accountForShortcut)
+      },
+      focusArticle () {
+        const { elementId } = this.get()
+        tryToFocusElement(elementId, /* scroll */ true)
       }
     },
     computed: {
@@ -253,7 +260,7 @@
         notification && notification.status &&
           notification.type !== 'mention' && notification.status.id === originalStatusId
       ),
-      spoilerShown: ({ $spoilersShown, uuid }) => !!$spoilersShown[uuid],
+      spoilerShown: ({ $spoilersShown, uuid, $showAllSpoilers }) => (typeof $spoilersShown[uuid] === 'undefined' ? !!$showAllSpoilers : !!$spoilersShown[uuid]),
       replyShown: ({ $repliesShown, uuid }) => !!$repliesShown[uuid],
       showCard: ({ originalStatus, isStatusInNotification, showMedia, $hideCards }) => (
         !$hideCards &&
@@ -269,6 +276,13 @@
         !isStatusInNotification &&
         originalStatus.media_attachments &&
         originalStatus.media_attachments.length
+      ),
+      mediaAttachments: ({ originalStatus }) => (
+        originalStatus.media_attachments
+      ),
+      sensitiveShown: ({ $sensitivesShown, uuid }) => !!$sensitivesShown[uuid],
+      sensitive: ({ originalStatus, $markMediaAsSensitive, $neverMarkMediaAsSensitive }) => (
+        !$neverMarkMediaAsSensitive && ($markMediaAsSensitive || originalStatus.sensitive)
       ),
       originalAccountEmojis: ({ originalAccount }) => (originalAccount.emojis || []),
       originalStatusEmojis: ({ originalStatus }) => (originalStatus.emojis || []),
@@ -288,16 +302,16 @@
       ariaLabel: ({
         originalAccount, account, plainTextContent, shortInlineFormattedDate, spoilerText,
         showContent, reblog, notification, visibility, $omitEmojiInDisplayNames, $disableLongAriaLabels,
-        showMedia, showPoll
+        showMedia, sensitive, sensitiveShown, mediaAttachments, showPoll
       }) => (
         getAccessibleLabelForStatus(originalAccount, account, plainTextContent,
           shortInlineFormattedDate, spoilerText, showContent,
           reblog, notification, visibility, $omitEmojiInDisplayNames, $disableLongAriaLabels,
-          showMedia, showPoll
+          showMedia, sensitive, sensitiveShown, mediaAttachments, showPoll
         )
       ),
       showHeader: ({ notification, status, timelineType }) => (
-        (notification && ['reblog', 'favourite', 'poll', 'status'].includes(notification.type)) ||
+        (notification && ['reblog', 'favourite', 'poll', 'status', 'update'].includes(notification.type)) ||
         status.reblog ||
         timelineType === 'pinned'
       ),
